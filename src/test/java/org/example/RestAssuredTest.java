@@ -17,7 +17,7 @@ public class RestAssuredTest {
 	}
 
 	@Test
-	public void firstGet() {
+	public void firstGetTest() {
 
 		Response response = given()
 				.header("Content-type", "application/json")
@@ -34,7 +34,7 @@ public class RestAssuredTest {
 	}
 
 	@Test
-	public void secondGet() {
+	public void secondGetTest() {
 		Response response = given()
 				.header("Content-type", "application/json")
 				.param("id", "7")
