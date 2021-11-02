@@ -1,22 +1,45 @@
 package org.example;
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RestAssuredTest {
 	private final Request request = new Request();
+	private final int totalPage = request.requestGet()
+			.getTotalPages();
 
-	@BeforeAll
-	public static void setUp() {
-		RestAssured.baseURI = "https://reqres.in";
+
+	@Test
+	public void firstTest() {
+		String email = null;
+		for (int i = 1; i <= totalPage; i++) {
+			for (UserData user : request.requestGet(i).getData()
+			) {
+				if (user.getFirstName().equals("George")
+						&& user.getLastName().equals("Bluth")) {
+					email = user.getEmail();
+				}
+			}
+		}
+		assertNotEquals(null, email);
+		assertEquals("george.bluth@reqres.in", email);
 	}
 
 	@Test
-	public void responseGet() {
-		request.requestGet("[Michael]", "[Lawson]");
-		request.assertMail("[michael.lawson@reqres]");
-		request.requestGet("[George]", "[Bluth]");
-		request.assertMail("[george.bluth@reqres.in]");
+	public void secondTest() {
+		String email = null;
+		for (int i = 1; i <= totalPage; i++) {
+			for (UserData user : request.requestGet(i).getData()
+			) {
+				if (user.getFirstName().equals("Michael")
+						/*&& user.getLastName().equals("Lawson")*/) {
+					email = user.getEmail();
+				}
+			}
+		}
+		//assertNotEquals(null, email);
+		assertEquals("michael.lawson@reqres", email);
 	}
 }
