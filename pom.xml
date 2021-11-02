@@ -33,6 +33,11 @@
       <version>3.0.1</version>
     </dependency>
     <dependency>
+      <groupId>net.serenity-bdd</groupId>
+      <artifactId>serenity-report-resources</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.8.1</version>
